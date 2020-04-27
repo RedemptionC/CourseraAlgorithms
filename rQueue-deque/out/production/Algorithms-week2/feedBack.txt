@@ -1,0 +1,122 @@
+Test 8: check that iterator() returns correct items after sequence
+        of m enqueue() and dequeue() operations
+  * m = 10
+  * m = 1000
+
+    java.lang.ArrayIndexOutOfBoundsException: Index 32 out of bounds for length 32
+
+    RandomizedQueue.enqueue(RandomizedQueue.java:49)
+    TestRandomizedQueue.checkIteratorAfterEnqueueDequeue(TestRandomizedQueue.java:896)
+    TestRandomizedQueue.test8(TestRandomizedQueue.java:922)
+    TestRandomizedQueue.main(TestRandomizedQueue.java:1209)
+
+==> FAILED
+
+Test 5a-5i: Total memory usage after inserting n items,
+            and then deleting all but one item.
+
+                 n        bytes
+----------------------------------------------------------
+=> FAILED       32          312   (1.3x)
+=> FAILED       64          568   (2.4x)
+=> FAILED      128         1080   (4.5x)
+=> FAILED      256         2104   (8.8x)
+=> FAILED      512         4152  (17.3x)
+=> FAILED     1024         8248  (34.4x)
+=> FAILED     2048        16440  (68.5x)
+=> FAILED     4096        32824 (136.8x)
+=> FAILED     8192        65592 (273.3x)
+==> 0/9 tests passed
+
+Memory: 8.00 n + 56.00   (R^2 = 1.000)
+
+Test 7a: Insert 100 strings; delete them one at a time, checking
+         for loitering after each deletion.
+    - loitering observed during 88 of 100 deletions
+    - maximum number of loitered objects at one time = 26
+
+==> FAILED
+
+Test 7b: Perform random operations, checking for loitering after
+         each operation. The probabilities of enqueue(), dequeue(),
+         and sample() are (p1, p2, p3), respectively.
+  * 200 random operations (0.8, 0.2, 0.0)
+    - loitering detected after operation 4 of 200
+    - sequence of operations was:
+         rq.enqueue("ILZILVDFGD")
+         rq.enqueue("YDEEDTVMOB")
+         rq.enqueue("EYYSAFOLPR")
+         rq.dequeue()     ==> "EYYSAFOLPR"
+    - loitered object(s):
+      EYYSAFOLPR
+
+  * 200 random operations (0.2, 0.8, 0.0)
+    - loitering detected after operation 2 of 200
+    - sequence of operations was:
+         rq.enqueue("ZYSNOUMOKV")
+         rq.dequeue()     ==> "ZYSNOUMOKV"
+    - loitered object(s):
+      ZYSNOUMOKV
+
+  * 200 random operations (0.6, 0.2, 0.2)
+    - loitering detected after operation 3 of 200
+    - sequence of operations was:
+         rq.enqueue("NQPNSDORBM")
+         rq.sample()      ==> "NQPNSDORBM"
+         rq.dequeue()     ==> "NQPNSDORBM"
+    - loitered object(s):
+      NQPNSDORBM
+
+  * 200 random operations (0.2, 0.4, 0.4)
+    - loitering detected after operation 4 of 200
+    - sequence of operations was:
+         rq.enqueue("AXSGVOQVXO")
+         rq.enqueue("MOUWNLKHXQ")
+         rq.dequeue()     ==> "AXSGVOQVXO"
+         rq.dequeue()     ==> "MOUWNLKHXQ"
+    - loitered object(s):
+      MOUWNLKHXQ
+
+==> FAILED
+
+Test 10: Total memory usage after inserting 4096 items, then successively
+         deleting items, seeking values of n where memory usage is maximized
+         as a function of n
+
+                 n        bytes
+----------------------------------------------------------
+=> passed     3200        65592
+=> passed     1600        32824
+=> passed      800        32824
+=> FAILED      400        32824   (1.7x)
+=> FAILED      200        32824   (3.4x)
+=> FAILED      100        32824   (6.6x)
+=> FAILED       50        32824  (12.7x)
+==> 3/7 tests passed
+
+Memory: 0.00 n^2 - 0.53 n + 32853.93   (R^2 = 1.000)
+
+
+Min observed memory for RandomizedQueue: 8.00 n + 56.00   (R^2 = 1.000)
+Max observed memory for RandomizedQueue: 0.00 n^2 - 0.53 n + 32853.93   (R^2 = 1.000)
+
+
+Test 3a-3k: make n calls to addFirst() followed by n calls to removeLast()
+                    n  seconds
+----------------------------------
+=> passed        1024     0.00
+=> passed        2048     0.00
+=> passed        4096     0.00
+=> passed        8192     0.00
+=> passed       16384     0.00
+=> passed       32768     0.00
+=> passed       65536     0.00
+=> passed      128000     0.00
+=> passed      256000     0.01
+=> passed      512000     0.01
+=> FAILED     1024000     1.14
+   [ Most likely one of your operations is not constant time. ]
+
+==> 10/11 tests passed
+
+
