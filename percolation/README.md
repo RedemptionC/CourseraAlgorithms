@@ -1,0 +1,14 @@
+两个类：
+
+## percolation
+
+所谓percolation，就是top和bottom是否连通，当上下两条各有任意一个site是连通的，那么percolate返回true
+
+* 判断是否连通，当然是利用之前学的unionFind算法，注意到学的unionfind是利用一维数组，这里虽然是二维数组表示矩形，但是我们可以把二维数组看成一维的，通过一个映射，把每一个(i,j)转化对应一维数组里的index，这样，就可以使用之前学到的unionfind算法
+
+* 如上所述，只要上下两条各有任意一个site是连通的，那么percolate返回true，但是我们并不知道最后是哪两个site，所以是不是必须要用两层循环判断上下两条是否percolate？这样当然可以实现，但是太低效，我们的做法是除了给出的矩阵site外，新建两个virtual site，一个与top一行的全部site进行union，一个与bottom所有的site进行union，这样，只要他们两个percolate，就说明矩阵percolate
+* 一个难点是backwash，即bottom上的任一site与top连通后，同是bottom的另一site，即使并没有percolate，但是因为他与virtual bottom site相连，而virtual bottom site现在又已经percolate，因此会判断这个没有与top virtual site相连的site为full site（即与第一行任一site相连的site），我的解决方法是使用两个unionfind object，只有一个与virtual site相连，用来判断percolate，而另一个用来判断isFull
+
+## percolationStat
+
+这个类是做一个统计，要open多少个site，才能实现percolate，用的统计方法比较唬人，monteCarlo，每次随机生成横纵坐标，如果对应的site not open，就open，然后判断percolate，进而统计达到percolate需要的平均值，标准差，置信区间等
