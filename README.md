@@ -1,4 +1,6 @@
 # coursera Algorithms part Ⅰ 编程作业
+# 解题报告和相关笔记：
+https://blog.csdn.net/redemptionc/category_9965490.html
 
 ## week 1. percolation（并查集）
 
